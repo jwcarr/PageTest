@@ -6,9 +6,11 @@ Written by Jon W. Carr
 
 Takes a matrix, with treatments along the columns and replications along
 the rows, and returns Page's (1963) L statistic, along with its p-value.
-
-The a-priori hypothesis for directionality must be specified - either
-"ascending" or "descending" - depending on the trend that is hypothesized.
+Page's trend test evaluates the hypothesis that X1 > X2 > X3 > ... > Xn
+(descending) or X1 < X2 < X3 < ... < Xn (ascending) against the null
+hypothesis that X1 = X2 = X3 = ... = Xn. The a-priori hypothesis for
+directionality must be specified - either "ascending" or "descending" -
+depending on the trend that is hypothesized.
 
 Example:
 
@@ -25,3 +27,5 @@ Reference:
 Page, E. (1963). Ordered hypotheses for multiple treatments: A significance
     test for linear ranks. Journal of the American Statistical Association,
     58, 216-230.
+
+Wikipedia: http://en.wikipedia.org/wiki/Page's_trend_test
