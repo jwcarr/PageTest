@@ -20,8 +20,8 @@ calculates the exact p-value using Formula 4 in Page (1963).
 Example
 -------
 
->>> data = [[100,90,105,70,5], [200,150,80,50,10], [121,130,75,20,25], [90,75,76,54,32]]  
->>> ptt(data, "descending")  
+> data = [[100,90,105,70,5], [200,150,80,50,10], [121,130,75,20,25], [90,75,76,54,32]]  
+> ptt(data, "descending")  
 (214.0, 4, 5, '< 0.001')
 
 Returns the 4-tuple (l, m, n, p), where l = Page's L statistic, m = number
