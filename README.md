@@ -9,7 +9,7 @@ Page’s trend test evaluates the hypothesis that *X*<sub>1</sub> > *X*<sub>2</s
 
 The program takes a matrix, with treatments along the columns and replications along the rows, and returns Page’s (1963) *L* statistic, along with its *p*-value.
 
-For small *m* and *n*, the program can use the critical values from Page (1963) to calculate the *p*-value. For larger values of *m* and *n*, the program calculates the exact *p*-value using Equation 4 in Page (1963, p. 224).
+The program calculates the exact *p*-value using Equation 4 in Page (1963, p. 224). For small values of *m* and *n*, the program can optionally use the critical values of *L* given in Page (1963) to calculate the *p*-value.
 
 
 ## Requirements
