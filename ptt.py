@@ -71,7 +71,7 @@ def PageCriticalP(l, m, n):
 
 
 
-# PageExact()
+# PageExactP()
 #   Calculate the exact p-value using Eqation 4 in Page (1963)
 
 def PageExactP(l, m, n, matrix):
