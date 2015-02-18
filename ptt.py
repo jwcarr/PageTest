@@ -75,7 +75,7 @@ def PageCriticalP(l, m, n):
 #   Calculate the exact p-value using Eqation 4 in Page (1963)
 
 def PageExactP(l, m, n, matrix):
-    # Calcualte L if the opposite trend had been hypothesized
+    # Calcualte L for the opposite trend
     alt_l = PageL(MirrorMatrix(matrix), m, n)
     # If L for the opposite trend > L for the hypothesized trend, then the trend
     # can't be significant ...
