@@ -6,14 +6,14 @@ from scipy import stats
 #   Run Page's trend test and return l, m, n, p,  where l = Page's L statistic,
 #   m = number of replications, n = number of treatments, and p = p-value.
 
-def PageTrendTest(matrix, ascending_trend=False, exact_p_value=True):
-    ValidateInput(matrix, ascending_trend, exact_p_value)
+def PageTrendTest(matrix, ascending_trend=False, use_critical_values=False):
+    ValidateInput(matrix, ascending_trend, use_critical_values)
     if ascending_trend == True:
         matrix = MirrorMatrix(matrix)
     m = len(matrix)
     n = len(matrix[0])
     l = PageL(matrix, m, n)
-    p = PageP(l, m, n, matrix, exact_p_value)
+    p = PageP(l, m, n, matrix, use_critical_values)
     return l, m, n, p
 
 
@@ -43,8 +43,8 @@ def PageL(matrix, m, n):
 #   Otherwise, check that m and n are small enough to be in the critical values
 #   table and call PageCriticalP() (if not, call PageExactP()).
 
-def PageP(l, m, n, matrix, exact_p_value):
-    if exact_p_value == True:
+def PageP(l, m, n, matrix, use_critical_values):
+    if use_critical_values == False:
         return PageExactP(l, m, n, matrix)
     if n == 3 and m < 21:
         return PageCriticalP(l, m, n)
@@ -111,15 +111,15 @@ def MirrorMatrix(matrix):
 # ValidateInput()
 #   Validates the input arguments to catch common problems
 
-def ValidateInput(matrix, ascending_trend, exact_p_value):
+def ValidateInput(matrix, ascending_trend, use_critical_values):
     if type(matrix) != list:
         raise ValueError('Matrix should be represented as a Python list')
     if type(matrix[0]) != list:
         raise ValueError('Matrix should be represented as a Python list containing Python lists')
     if type(ascending_trend) != bool:
         raise ValueError('The ascending_trend argument should be set to True or False')
-    if type(exact_p_value) != bool:
-        raise ValueError('The exact_p_value argument should be set to True or False')
+    if type(use_critical_values) != bool:
+        raise ValueError('The use_critical_values argument should be set to True or False')
     if type(matrix[0][0]) not in (int, float):
         raise ValueError('Each row of your matrix should contain a set of scores for a replication')
     if len(matrix) < 2:

@@ -47,10 +47,10 @@ ptt.PageTrendTest(data, ascending_trend=True)
 (146.0, 4, 5, 'n.s.')
 ```
 
-If you want to use Page’s critical values (rather than calculate an exact *p*-value) set the ```exact_p_value``` argument to ```False```:
+If you want to use Page’s critical values (rather than calculate an exact *p*-value) set the ```use_critical_values``` argument to ```True```:
 
 ```python
-ptt.PageTrendTest(data, exact_p_value=False)
+ptt.PageTrendTest(data, use_critical_values=True)
 (214.0, 4, 5, '< 0.001')
 ```
 
