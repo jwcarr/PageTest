@@ -113,21 +113,23 @@ def MirrorMatrix(matrix):
 
 def ValidateInput(matrix, ascending_trend, use_critical_values):
     if type(matrix) != list:
-        raise ValueError('Matrix should be represented as a Python list')
-    if type(matrix[0]) != list:
-        raise ValueError('Matrix should be represented as a Python list containing Python lists')
-    if type(ascending_trend) != bool:
-        raise ValueError('The ascending_trend argument should be set to True or False')
-    if type(use_critical_values) != bool:
-        raise ValueError('The use_critical_values argument should be set to True or False')
-    if type(matrix[0][0]) not in (int, float):
-        raise ValueError('Each row of your matrix should contain a set of scores for a replication')
+        raise TypeError('Matrix should be represented as Python lists')
+    for row_type in [type(matrix[i]) for i in range(len(matrix))]:
+        if row_type != list:
+            raise TypeError('Rows of the matrix should be represented as Python lists')
+    for cell_type in [type(matrix[i][j]) for i in range(len(matrix)) for j in range(len(matrix[i]))]:
+        if cell_type not in (int, float):
+            raise TypeError('Matrix should contain integers or floating points')
+    if len(set([len(row) for row in matrix])) != 1:
+        raise ValueError('Rows in matrix should have same length')
     if len(matrix) < 2:
         raise ValueError('Page\'s trend test requires at least 2 replications')
     if len(matrix[0]) < 3:
         raise ValueError('Page\'s trend test requires at least 3 treatments')
-    if len(set([len(row) for row in matrix])) != 1:
-        raise ValueError('Each row in your matrix should be of the same length')
+    if type(ascending_trend) != bool:
+        raise TypeError('The ascending_trend argument should be set to True or False')
+    if type(use_critical_values) != bool:
+        raise TypeError('The use_critical_values argument should be set to True or False')
 
 
 
