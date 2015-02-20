@@ -39,18 +39,14 @@ def PageL(matrix, m, n):
 
 
 # PageP()
-#   Caluculate a p-value for L. If an exact value was requested, call PageExactP().
-#   Otherwise, check that m and n are small enough to be in the critical values
-#   table and call PageCriticalP() (if not, call PageExactP()).
+#   Calculate a p-value for L using the appropriate method.
 
 def PageP(l, m, n, matrix, use_critical_values):
-    if use_critical_values == False:
-        return PageExactP(l, m, n, matrix)
-    if n == 3 and m < 21:
-        return PageCriticalP(l, m, n)
-    if n > 3 and n < 9 and m < 13:
-        return PageCriticalP(l, m, n)
-    print 'Large m and n, so calculating exact p-value instead'
+    if use_critical_values == True:
+        try:
+            return PageCriticalP(l, m, n)
+        except IndexError:
+            print 'Large data matrix, so calculating exact p-value instead'
     return PageExactP(l, m, n, matrix)
 
 
