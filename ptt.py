@@ -110,7 +110,7 @@ def MirrorMatrix(matrix):
 def ValidateInput(matrix, ascending_trend, use_critical_values):
     if type(matrix) != list:
         raise TypeError('Matrix should be represented as Python lists')
-    for row_type in [type(matrix[i]) for i in range(len(matrix))]:
+    for row_type in [type(row) for row in matrix]:
         if row_type != list:
             raise TypeError('Rows of the matrix should be represented as Python lists')
     for cell_type in [type(matrix[i][j]) for i in range(len(matrix)) for j in range(len(matrix[i]))]:
