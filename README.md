@@ -5,11 +5,13 @@ A Python implementation of Page’s trend test (Page, 1963)
 
 ## Description
 
-Page’s trend test evaluates the hypothesis that *X*<sub>1</sub> > *X*<sub>2</sub> > *X*<sub>3</sub> > ... > *X*<sub>n</sub> (descending trend) or *X*<sub>1</sub> < *X*<sub>2</sub> < *X*<sub>3</sub> < ... < *X*<sub>n</sub> (ascending trend) against the null hypothesis that *X*<sub>1</sub> = *X*<sub>2</sub> = *X*<sub>3</sub> = ... = *X*<sub>n</sub> (no trend). The *a-priori* hypothesis for the directionality of the trend must be specified (by default the program assumes a descending trend).
+Page’s trend test evaluates the hypothesis that *X*<sub>1</sub> &ge; *X*<sub>2</sub> &ge; *X*<sub>3</sub> &ge; ... &ge; *X*<sub>n</sub> (descending trend) or *X*<sub>1</sub> &le; *X*<sub>2</sub> &le; *X*<sub>3</sub> &le; ... &le; *X*<sub>n</sub> (ascending trend) against the null hypothesis that *X*<sub>1</sub> = *X*<sub>2</sub> = *X*<sub>3</sub> = ... = *X*<sub>n</sub> (no trend). The *a-priori* hypothesis for the directionality of the trend must be specified (by default the program assumes a descending trend).
 
 The program takes a matrix, with treatments along the columns and replications along the rows, and returns Page’s (1963) *L* statistic, along with its *p*-value.
 
 The program calculates the exact *p*-value using Equation 4 in Page (1963, p. 224). For small values of *m* and *n*, the program can optionally use the critical values of *L* given in Page (1963) to calculate the *p*-value.
+
+Although the test is commonly referred to as a trend test, it does not strictly test for a trend across the entire dataset. Rather, the test will return a significant result if at least one data point goes up (or down in the case of a descending hypothesis) in each replication.
 
 
 ## Requirements
