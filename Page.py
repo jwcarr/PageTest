@@ -2,13 +2,13 @@ from scipy import stats
 
 
 
-# PageTrendTest()
-#   Run Page's trend test and return l, m, n, p,  where l = Page's L statistic,
+# Test()
+#   Run Page's test and return l, m, n, p, where l = Page's L statistic,
 #   m = number of replications, n = number of treatments, and p = p-value.
 
-def PageTrendTest(matrix, ascending_trend=False, use_critical_values=False):
-    ValidateInput(matrix, ascending_trend, use_critical_values)
-    if ascending_trend == True:
+def Test(matrix, ascending=False, use_critical_values=False):
+    ValidateInput(matrix, ascending, use_critical_values)
+    if ascending == True:
         matrix = MirrorMatrix(matrix)
     m = len(matrix)
     n = len(matrix[0])
@@ -107,7 +107,7 @@ def MirrorMatrix(matrix):
 # ValidateInput()
 #   Validates the input arguments to catch common problems
 
-def ValidateInput(matrix, ascending_trend, use_critical_values):
+def ValidateInput(matrix, ascending, use_critical_values):
     if type(matrix) != list:
         raise TypeError('Matrix should be represented as Python lists')
     for row_type in [type(row) for row in matrix]:
@@ -119,11 +119,11 @@ def ValidateInput(matrix, ascending_trend, use_critical_values):
     if len(set([len(row) for row in matrix])) != 1:
         raise ValueError('Rows in matrix should have same length')
     if len(matrix) < 2:
-        raise ValueError('Page\'s trend test requires at least 2 replications')
+        raise ValueError('Page\'s test requires at least 2 replications')
     if len(matrix[0]) < 3:
-        raise ValueError('Page\'s trend test requires at least 3 treatments')
-    if type(ascending_trend) != bool:
-        raise TypeError('The ascending_trend argument should be set to True or False')
+        raise ValueError('Page\'s test requires at least 3 treatments')
+    if type(ascending) != bool:
+        raise TypeError('The ascending argument should be set to True or False')
     if type(use_critical_values) != bool:
         raise TypeError('The use_critical_values argument should be set to True or False')
 
