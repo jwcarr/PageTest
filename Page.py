@@ -90,17 +90,7 @@ def PageExactP(l, m, n, matrix):
 #   Reverses the columns of a matrix
 
 def MirrorMatrix(matrix):
-    m = len(matrix)
-    n = len(matrix[0])
-    columns = []
-    for i in range(0, n):
-        columns.append([row[i] for row in matrix])
-    mirrored_matrix = []
-    for i in range(0, m):
-        new_row = [row[i] for row in columns]
-        new_row.reverse()
-        mirrored_matrix.append(new_row)
-    return mirrored_matrix
+    return [[row[i] for i in reversed(range(len(matrix[0])))] for row in matrix]
 
 
 
