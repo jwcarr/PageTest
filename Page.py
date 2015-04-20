@@ -46,7 +46,7 @@ def PageP(l, m, n, matrix, use_critical_values):
         try:
             return PageCriticalP(l, m, n)
         except IndexError:
-            print 'Large data matrix, so calculating exact p-value instead'
+            print('Large data matrix, so calculating exact p-value instead')
     return PageExactP(l, m, n, matrix)
 
 
