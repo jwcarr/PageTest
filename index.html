@@ -13,7 +13,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">PageTest</h1>
-      <h2 class="project-tagline">Python implementation of Page&apos;s test</h2>
+      <h2 class="project-tagline">Python implementation of Page’s test</h2>
       <h2 class="release-info" id='release-info'>&nbsp;</h2>
       <a href="https://github.com/jwcarr/PageTet" class="btn">View on GitHub</a>
       <a href="https://github.com/jwcarr/PageTest/zipball/master" class="btn" id="zip-ball">Download .zip</a>
@@ -36,8 +36,36 @@
 
 <p>Scipy – <a href="http://scipy.org">http://scipy.org</a></p>
 
+
 <h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+<a id="parameters" class="anchor" href="#parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters</h2>
+
+<ul>
+<li>
+<code>matrix</code> <em>list</em>: Data matrix (formated as a list of lists) with treatments along the columns and replications along the rows.</li>
+<li>
+<code>ascending</code> <em>bool</em>, optional: Set to True if hypothesizing an ascending trend, False if hypothesizing a descending trend (default: False).</li>
+<li>
+<code>use_critical_values</code> <em>bool</em>, optional: Set to True to use the critical values from Page (1963) rather than compute an exact p-vaue (default: False).</li>
+</ul>
+
+<h2>
+<a id="return-values" class="anchor" href="#return-values" aria-hidden="true"><span class="octicon octicon-link"></span></a>Return values</h2>
+
+<ul>
+<li>
+<code>L</code> <em>float</em>: Page’s L statistic</li>
+<li>
+<code>m</code> <em>int</em>: Number of replications</li>
+<li>
+<code>n</code> <em>int</em>: Number of treatments</li>
+<li>
+<code>p</code> <em>float</em> or <em>str</em>: P-value</li>
+</ul>
+
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage example</h2>
 
 <p>Import the module:</p>
 
