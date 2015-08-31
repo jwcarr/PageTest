@@ -6,22 +6,22 @@ from scipy import stats
 #   Run Page's test and return l, m, n, p, where l = Page's L statistic,
 #   m = number of replications, n = number of treatments, and p = p-value.
 
-def Test(matrix, ascending=False, use_critical_values=False):
-    ValidateInput(matrix, ascending, use_critical_values)
+def test(matrix, ascending=False, use_critical_values=False):
+    validate_input(matrix, ascending, use_critical_values)
     if ascending == True:
-        matrix = MirrorMatrix(matrix)
+        matrix = reverse_matrix(matrix)
     m = len(matrix)
     n = len(matrix[0])
-    l = PageL(matrix, m, n)
-    p = PageP(l, m, n, matrix, use_critical_values)
+    l = page_l(matrix, m, n)
+    p = page_p(l, m, n, matrix, use_critical_values)
     return l, m, n, p
 
 
 
-# PageL()
+# page_l()
 #   Calculate Page's L statistic.
 
-def PageL(matrix, m, n):
+def page_l(matrix, m, n):
     rank_matrix = []
     for i in range(0, m):
         rank = stats.rankdata(matrix[i])
@@ -38,26 +38,26 @@ def PageL(matrix, m, n):
 
 
 
-# PageP()
+# page_p()
 #   Calculate a p-value for L using the appropriate method.
 
-def PageP(l, m, n, matrix, use_critical_values):
+def page_p(l, m, n, matrix, use_critical_values):
     if use_critical_values == True:
         try:
-            return PageCriticalP(l, m, n)
+            return page_critical_p(l, m, n)
         except IndexError:
             print('Large data matrix, so calculating exact p-value instead')
-    return PageExactP(l, m, n, matrix)
+    return page_exact_p(l, m, n, matrix)
 
 
 
-# PageCriticalP()
+# page_critical_p()
 #   For small m and n, the exact p-value won't always agree with the critical
 #   values given in Page (1963, p. 220). If you prefer, you can use Page's critical
 #   values instead. This function looks up the critical values for m and n, and
 #   finds the significance level for L.
 
-def PageCriticalP(l, m, n):
+def page_critical_p(l, m, n):
     values = critical_values[n-3][m-2]
     significance_levels = ['< 0.001', '< 0.01', '< 0.05']
     for i in range(0, 3):
@@ -67,12 +67,12 @@ def PageCriticalP(l, m, n):
 
 
 
-# PageExactP()
+# page_exact_p()
 #   Calculate the exact p-value using Eqation 4 in Page (1963)
 
-def PageExactP(l, m, n, matrix):
+def page_exact_p(l, m, n, matrix):
     # Calcualte L for the opposite trend
-    alt_l = PageL(MirrorMatrix(matrix), m, n)
+    alt_l = page_l(reverse_matrix(matrix), m, n)
     # If L for the opposite trend > L for the hypothesized trend, then the trend
     # can't be significant ...
     if alt_l > l:
@@ -86,18 +86,18 @@ def PageExactP(l, m, n, matrix):
 
 
 
-# MirrorMatrix()
+# reverse_matrix()
 #   Reverses the columns of a matrix
 
-def MirrorMatrix(matrix):
+def reverse_matrix(matrix):
     return [[row[i] for i in reversed(range(len(matrix[0])))] for row in matrix]
 
 
 
-# ValidateInput()
+# validate_input()
 #   Validates the input arguments to catch common problems
 
-def ValidateInput(matrix, ascending, use_critical_values):
+def validate_input(matrix, ascending, use_critical_values):
     if type(matrix) != list:
         raise TypeError('Matrix should be represented as Python lists')
     for row_type in [type(row) for row in matrix]:
