@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>PageTest by jwcarr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">PageTest</h1>
+      <h2 class="project-tagline">A Python implementation of Page&#39;s test</h2>
+      <a href="https://github.com/jwcarr/PageTest" class="btn">View on GitHub</a>
+      <a href="https://github.com/jwcarr/PageTest/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/jwcarr/PageTest/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="pagetest" class="anchor" href="#pagetest" aria-hidden="true"><span class="octicon octicon-link"></span></a>PageTest</h1>
+
+<p>A Python implementation of Page’s test (Page, 1963)</p>
+
+<h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
+
+<p>Page’s test evaluates the hypothesis that <em>X</em><sub>1</sub> ≥ <em>X</em><sub>2</sub> ≥ <em>X</em><sub>3</sub> ≥ ... ≥ <em>X</em><sub>n</sub> (descending trend) or <em>X</em><sub>1</sub> ≤ <em>X</em><sub>2</sub> ≤ <em>X</em><sub>3</sub> ≤ ... ≤ <em>X</em><sub>n</sub> (ascending trend) against the null hypothesis that <em>X</em><sub>1</sub> = <em>X</em><sub>2</sub> = <em>X</em><sub>3</sub> = ... = <em>X</em><sub>n</sub> (no trend). The <em>a-priori</em> hypothesis for the directionality of the trend must be specified (by default the program assumes a descending trend).</p>
+
+<p>The program takes a matrix, with treatments along the columns and replications along the rows, and returns Page’s (1963) <em>L</em> statistic, along with its <em>p</em>-value.</p>
+
+<p>The program calculates the exact <em>p</em>-value using Equation 4 in Page (1963, p. 224). For small values of <em>m</em> and <em>n</em>, the program can optionally use the critical values of <em>L</em> given in Page (1963) to calculate the <em>p</em>-value.</p>
+
+<p>Although the test is commonly referred to as a trend test, it does not strictly test for a trend across the entire dataset. Rather, the test will return a significant result if at least one data point goes up (or down in the case of a descending hypothesis) in each replication.</p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>Scipy – <a href="http://scipy.org">http://scipy.org</a></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Import the module:</p>
+
+<div class="highlight highlight-python"><pre><span class="pl-k">import</span> Page</pre></div>
+
+<p>Input your data in the form of a matrix (represented in Python as a list of lists). Treatments go along the columns and replications go down the rows.</p>
+
+<div class="highlight highlight-python"><pre>data <span class="pl-k">=</span> [[<span class="pl-c1">100</span>,<span class="pl-c1">90</span>,<span class="pl-c1">105</span>,<span class="pl-c1">70</span>,<span class="pl-c1">5</span>], [<span class="pl-c1">200</span>,<span class="pl-c1">150</span>,<span class="pl-c1">80</span>,<span class="pl-c1">50</span>,<span class="pl-c1">10</span>], [<span class="pl-c1">121</span>,<span class="pl-c1">130</span>,<span class="pl-c1">75</span>,<span class="pl-c1">20</span>,<span class="pl-c1">25</span>], [<span class="pl-c1">90</span>,<span class="pl-c1">75</span>,<span class="pl-c1">76</span>,<span class="pl-c1">54</span>,<span class="pl-c1">32</span>]]</pre></div>
+
+<p>Run Page’s test on your data:</p>
+
+<div class="highlight highlight-python"><pre>Page.Test(data)
+(<span class="pl-c1">214.0</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">0.00033692926567685522</span>)</pre></div>
+
+<p>The result is a 4-tuple (l, m, n, p), where l = Page’s <em>L</em> statistic, m = number of replications, n = number of treatments, and p is the <em>p</em>-value.</p>
+
+<p>If you hypothesize an ascending trend (rather than descending), set the <code>ascending</code> argument to <code>True</code>:</p>
+
+<div class="highlight highlight-python"><pre>Page.Test(data, <span class="pl-smi">ascending</span><span class="pl-k">=</span><span class="pl-c1">True</span>)
+(<span class="pl-c1">146.0</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-s"><span class="pl-pds">'</span>n.s.<span class="pl-pds">'</span></span>)</pre></div>
+
+<p>If you want to use Page’s critical values (rather than calculate an exact <em>p</em>-value) set the <code>use_critical_values</code> argument to <code>True</code>:</p>
+
+<div class="highlight highlight-python"><pre>Page.Test(data, <span class="pl-smi">use_critical_values</span><span class="pl-k">=</span><span class="pl-c1">True</span>)
+(<span class="pl-c1">214.0</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-s"><span class="pl-pds">'</span>&lt; 0.001<span class="pl-pds">'</span></span>)</pre></div>
+
+<h2>
+<a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
+
+<p>Page, E. B. (1963). Ordered hypotheses for multiple treatments: A significance test for linear ranks. <em>Journal of the American Statistical Association</em>, <em>58</em>, 216–230. doi:<a href="http://dx.doi.org/10.2307%2F2282965">10.2307/2282965</a></p>
+
+<p>Wikipedia: <a href="http://en.wikipedia.org/wiki/Page's_trend_test">http://en.wikipedia.org/wiki/Page's_trend_test</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/jwcarr/PageTest">PageTest</a> is maintained by <a href="https://github.com/jwcarr">jwcarr</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
