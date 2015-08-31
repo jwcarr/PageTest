@@ -8,14 +8,15 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <script src='jquery.js'></script>
   </head>
   <body>
     <section class="page-header">
       <h1 class="project-name">PageTest</h1>
-      <h2 class="project-tagline">A Python implementation of Page&#39;s test</h2>
-      <a href="https://github.com/jwcarr/PageTest" class="btn">View on GitHub</a>
-      <a href="https://github.com/jwcarr/PageTest/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/jwcarr/PageTest/tarball/master" class="btn">Download .tar.gz</a>
+      <h2 class="project-tagline">Python implementation of Page&apos;s test</h2>
+      <h2 class="release-info" id='release-info'>&nbsp;</h2>
+      <a href="https://github.com/jwcarr/PageTet" class="btn">View on GitHub</a>
+      <a href="https://github.com/jwcarr/PageTest/zipball/master" class="btn" id="zip-ball">Download .zip</a>
     </section>
 
     <section class="main-content">
@@ -69,6 +70,11 @@
 (<span class="pl-c1">214.0</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-s"><span class="pl-pds">'</span>&lt; 0.001<span class="pl-pds">'</span></span>)</pre></div>
 
 <h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MantelTest is licensed under the terms of the MIT License.</p>
+
+<h2>
 <a id="references" class="anchor" href="#references" aria-hidden="true"><span class="octicon octicon-link"></span></a>References</h2>
 
 <p>Page, E. B. (1963). Ordered hypotheses for multiple treatments: A significance test for linear ranks. <em>Journal of the American Statistical Association</em>, <em>58</em>, 216–230. doi:<a href="http://dx.doi.org/10.2307%2F2282965">10.2307/2282965</a></p>
@@ -83,6 +89,18 @@
 
     </section>
 
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $.getJSON("https://api.github.com/repos/jwcarr/PageTest/releases/latest").done(function (release) {
+          var zip_url = "https://github.com/jwcarr/PageTest/archive/" + release['tag_name'] + ".zip";
+          $("#zip-ball").attr("href", zip_url);
+          var release_info = "Latest release: " + release['tag_name'] + " (" + release['name'] + ")";
+          $("#release-info").hide();
+          $("#release-info").text(release_info);
+          $("#release-info").fadeIn(500);
+        });
+      });
+    </script>
   
   </body>
 </html>
