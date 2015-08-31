@@ -61,7 +61,7 @@ a {
 
 @media screen and (min-width: 64em) {
   .page-header {
-    padding: 5rem 6rem; } }
+    padding: 3rem 4rem; } }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .page-header {
@@ -73,7 +73,7 @@ a {
 
 .project-name {
   margin-top: 0;
-  margin-bottom: 0.1rem; }
+  margin-bottom: -1rem; }
 
 @media screen and (min-width: 64em) {
   .project-name {
@@ -90,6 +90,7 @@ a {
 .project-tagline {
   margin-bottom: 2rem;
   font-weight: normal;
+  font-style: italic;
   opacity: 0.7; }
 
 @media screen and (min-width: 64em) {
@@ -103,6 +104,24 @@ a {
 @media screen and (max-width: 42em) {
   .project-tagline {
     font-size: 1rem; } }
+
+.release-info {
+  margin-bottom: 2rem;
+  font-weight: normal;
+  opacity: 0.7; }
+
+@media screen and (min-width: 64em) {
+  .release-info {
+    font-size: 1rem; } }
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+  .release-info {
+    font-size: 0.8rem; } }
+
+@media screen and (max-width: 42em) {
+  .release-info {
+    font-size: 0.75rem; } }
+
 
 .main-content :first-child {
   margin-top: 0; }
