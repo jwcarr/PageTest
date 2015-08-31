@@ -19,7 +19,22 @@ Although the test is commonly referred to as a trend test, it does not strictly 
 Scipy – http://scipy.org
 
 
-## Usage
+## Parameters
+
+- ```matrix``` *list*: Data matrix (formated as a list of lists) with treatments along the columns and replications along the rows.
+- ```ascending``` *bool*, optional: Set to True if hypothesizing an ascending trend, False if hypothesizing a descending trend (default: False).
+- ```use_critical_values``` *bool*, optional: Set to True to use the critical values from Page (1963) rather than compute an exact p-vaue (default: False).
+
+
+## Return values
+
+- ```L``` *float*: Page’s L statistic
+- ```m``` *int*: Number of replications
+- ```n``` *int*: Number of treatments
+- ```p``` *float*: P-value
+
+
+## Usage example
 
 Import the module:
 
