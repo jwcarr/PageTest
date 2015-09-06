@@ -1,4 +1,4 @@
-# PageTest v1.0.0
+# PageTest v1.0.1
 # http://jwcarr.github.io/PageTest/
 #
 # Copyright (c) 2013-2015 Jon W. Carr
