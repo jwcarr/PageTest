@@ -12,7 +12,7 @@ from scipy import stats
 def test(matrix, ascending=False, use_critical_values=False):
   """
   Takes a matrix, with treatments along the columns and replications along the
-  rows, and returns Page’s (1963) L statistic, along with its p-value.
+  rows, and returns Page's (1963) L statistic, along with its p-value.
 
   Parameters
   ----------
