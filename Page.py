@@ -115,9 +115,6 @@ def validate_input(matrix, ascending, use_critical_values):
   for row_type in [type(row) for row in matrix]:
     if row_type != list:
       raise TypeError('Rows of the matrix should be represented as Python lists')
-  for cell_type in [type(matrix[i][j]) for i in range(len(matrix)) for j in range(len(matrix[i]))]:
-    if cell_type not in (int, float):
-      raise TypeError('Matrix should contain integers or floating points')
   if len(set([len(row) for row in matrix])) != 1:
     raise ValueError('Rows in matrix should have same length')
   if len(matrix) < 2:
